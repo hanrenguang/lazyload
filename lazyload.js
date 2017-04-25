@@ -25,5 +25,7 @@
         LazyLoad.prototype.removeDataUrl = function (imgList) {
 
         };
+
+        global && (global.LazyLoad = LazyLoad);
     };
 })(this))
