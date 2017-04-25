@@ -26,6 +26,7 @@
         }
 
         LazyLoad.prototype.init = function () {
+            alert("This lib is not finished!");
             var self = this,
                 timer = null;
 
@@ -41,7 +42,7 @@
                     });
 
                     self.loadImg(imgInVp);
-                }, 50);
+                }, 100);
             }
 
             callback();
@@ -61,7 +62,7 @@
         };
 
         LazyLoad.prototype.isInViewport = function (img) {
-            
+
         };
 
         LazyLoad.prototype.loadImg = function (imgList) {
