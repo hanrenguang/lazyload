@@ -6,8 +6,12 @@
 
 `img` 写法示例：
 
-`<img class="lazyload-img" data-src="cur-src" src="loading.jpg" alt="xxx">`
+```HTML
+<img class="lazyload-img" data-src="cur-src" src="loading.jpg" alt="xxx">
+```
 
 加载 `lazyload.js` 后，在你的代码中加入如下一行代码即可工作：
 
-`new LazyLoad();`
+```javascript
+new LazyLoad();
+```
