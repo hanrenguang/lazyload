@@ -26,7 +26,6 @@
         }
 
         LazyLoad.prototype.init = function () {
-            alert("This lib is not finished!");
             var self = this,
                 timer = null;
 
@@ -62,15 +61,37 @@
         };
 
         LazyLoad.prototype.isInViewport = function (img) {
+            var clientH = document.documentElement.clientHeight,
+                clientW = document.documentElement.clientWidth,
+                imgPosOb, imgH, imgL, imgT, imgW;
 
+
+            if(typeof img.getBoundingClientRect === "function") {
+                imgPosOb = img.getBoundingClientRect();
+                imgT = imgPosOb.top;
+                imgL = imgPosOb.left;
+                imgH = imgPosOb.height;
+                imgW = imgPosOb.width;
+
+                if((imgT > -imgH && imgT < clientH) && (imgL > -imgW && imgL < clientW)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new Error("您的浏览器版本过低！");
+                return;
+            }
         };
 
         LazyLoad.prototype.loadImg = function (imgList) {
+            var self = this;
+
             imgList.forEach(function (img) {
                 var src = img.getAttribute("data-src");
                 img.src = src;
                 img.removeAttribute("data-src");
-                this.removeItem(img);
+                self.removeItem(img);
             });
         };
 
