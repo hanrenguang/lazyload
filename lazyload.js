@@ -133,5 +133,7 @@
         };
 
         global && (global.LazyLoad = LazyLoad);
+
+        return LazyLoad;
     };
 })(this))
