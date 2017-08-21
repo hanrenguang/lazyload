@@ -48,7 +48,7 @@
 
             function callback() {
                 timer && clearTimeout(timer);
-                setTimeout(function () {
+                timer = setTimeout(function () {
                     var imgInVp = [];
 
                     self.imgList.forEach(function (img) {
