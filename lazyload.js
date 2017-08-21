@@ -70,7 +70,7 @@
                     cb: callback
                 },
                 {
-                    elem: document,
+                    elem: window,
                     type: "resize",
                     cb: callback
                 }
