@@ -1,4 +1,4 @@
-(function (factory) {
+;(function (factory) {
     "use strict";
     if (typeof define === "function" && define.amd) { // AMD
         define(factory);
@@ -21,13 +21,15 @@
          * },]
          */
         function addListener(eventList) {
-            eventList.forEach(function (event) {
-                var elem = event.elem,
-                    type = event.type,
-                    cb = event.cb;
+            var len = eventList.length;
+
+            for (var i = 0; i < len; i++) {
+                var elem = eventList[i].elem,
+                    type = eventList[i].type,
+                    cb = eventList[i].cb;
 
                 elem.addEventListener(type, cb, false);
-            });
+            }
         }
 
         /**
@@ -50,12 +52,13 @@
                 timer && clearTimeout(timer);
                 timer = setTimeout(function () {
                     var imgInVp = [];
+                    var len = self.imgList.length;
 
-                    self.imgList.forEach(function (img) {
-                        if(self.isInViewport(img)) {
-                            imgInVp.push(img);
+                    for (var i = 0; i < len; i++) {
+                        if(self.isInViewport(self.imgList[i])) {
+                            imgInVp.push(self.imgList[i]);
                         }
-                    });
+                    }
 
                     self.loadImg(imgInVp);
                 }, 100);
@@ -108,17 +111,18 @@
 
         /**
          * 图片加载实现
-         * @param  {Array} imgList [需要加载的图片列表]
+         * @param  {Array} inVpImgList [需要加载的图片列表]
          */
-        LazyLoad.prototype.loadImg = function (imgList) {
-            var self = this;
+        LazyLoad.prototype.loadImg = function (inVpImgList) {
+            var len = inVpImgList.length;
+            var src = '';
 
-            imgList.forEach(function (img) {
-                var src = img.getAttribute("data-src");
-                img.src = src;
-                img.removeAttribute("data-src");
-                self.removeItem(img);
-            });
+            for (var i = 0; i < len; i++) {
+                src = inVpImgList[i].getAttribute("data-src");
+                inVpImgList[i].src = src;
+                inVpImgList[i].removeAttribute("data-src");
+                this.removeItem(inVpImgList[i]);
+            }
         };
 
         /**
