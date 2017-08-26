@@ -49,6 +49,13 @@
                 timer = null;
 
             function callback() {
+                // 所有图片都加载完成后移除事件监听
+                if (self.imgList.length === 0) {
+                    document.removeEventListener('scroll', callback);
+                    window.removeEventListener('resize', callback);
+                    return;
+                }
+
                 timer && clearTimeout(timer);
                 timer = setTimeout(function () {
                     var imgInVp = [];
