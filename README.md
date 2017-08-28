@@ -15,3 +15,7 @@
 ```javascript
 new LazyLoad();
 ```
+
+## License
+
+MIT
