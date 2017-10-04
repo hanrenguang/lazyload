@@ -48,8 +48,8 @@
     LazyLoad.prototype.init = function() {
         var self = this,
             timer = null,
-            completeCb = typeof options.complete == "function" ? options.complete : function () {},
-            delay = options.delay ? options.delay : 100;
+            completeCb = typeof self.options.complete == "function" ? self.options.complete : function () {},
+            delay = self.options.delay ? self.options.delay : 100;
 
         function callback() {
             // 所有图片都加载完成后移除事件监听
