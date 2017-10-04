@@ -34,8 +34,10 @@
     /**
      * 懒加载构造函数
      * @constructor
+     * @param {Object} options [配置项]
      */
-    function LazyLoad() {
+    function LazyLoad(options) {
+        this.options = options;
         this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
         this.init();
     }
@@ -45,13 +47,16 @@
      */
     LazyLoad.prototype.init = function() {
         var self = this,
-            timer = null;
+            timer = null,
+            completeCb = typeof options.complete == "function" ? options.complete : function () {},
+            delay = options.delay ? options.delay : 100;
 
         function callback() {
             // 所有图片都加载完成后移除事件监听
             if (self.imgList.length === 0) {
                 document.removeEventListener('scroll', callback);
                 window.removeEventListener('resize', callback);
+                completeCb();
                 return;
             }
 
@@ -67,7 +72,7 @@
                 }
 
                 self.loadImg(imgInVp);
-            }, 100);
+            }, delay);
         }
 
         callback();
@@ -93,7 +98,7 @@
             clientW = document.documentElement.clientWidth,
             imgPosOb, imgH, imgL, imgT, imgW;
 
-        if (typeof img.getBoundingClientRect === "function") {
+        if (typeof img.getBoundingClientRect == "function") {
             imgPosOb = img.getBoundingClientRect();
             imgT = imgPosOb.top;
             imgL = imgPosOb.left;
