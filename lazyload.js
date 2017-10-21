@@ -96,6 +96,8 @@
     LazyLoad.prototype.isInViewport = function(img) {
         var clientH = document.documentElement.clientHeight,
             clientW = document.documentElement.clientWidth,
+            spaceH = this.options.spaceH || 0,
+            spaceW = this.options.spaceW || 0,
             imgPosOb, imgH, imgL, imgT, imgW;
 
         if (typeof img.getBoundingClientRect == "function") {
@@ -105,7 +107,8 @@
             imgH = imgPosOb.height;
             imgW = imgPosOb.width;
 
-            if ((imgT > -imgH && imgT < clientH) && (imgL > -imgW && imgL < clientW)) {
+            if ((imgT > -imgH-spaceH && imgT < clientH+spaceH) && 
+                (imgL > -imgW-spaceW && imgL < clientW+spaceW)) {
                 return true;
             } else {
                 return false;

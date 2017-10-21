@@ -19,12 +19,16 @@ new LazyLoad();
 ## options
 
 可以在实例化的时候传入一些配置项 `options`，可选参数如下（之后还会增加其他配置）：  
+- **spaceH**：图片在垂直方向上距离视口小于 `spaceH` 距离时加载图片，默认值为0
+- **spaceW**：图片在水平方向上距离视口小于 `spaceW` 距离时加载图片，默认值为0
 - **delay**：图片停留在视口 `delay(ms)` 时间后会被加载，默认为 `100`
 - **complete**：当所有懒加载图片都加载完成时执行函数，可选
 
 示例：
 ```javascript
 new LazyLoad({
+    spaceH: 100,
+    spaceW: 100,
     delay: 200,
     complete: function () {
         alert("All imgs were loaded! ");
