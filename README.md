@@ -31,14 +31,14 @@ new LazyLoad({
     spaceW: 100,
     delay: 200,
     complete: function () {
-        alert("All imgs were loaded! ");
+        alert("All imgs were loaded!");
     }
 });
 ```
 
 ## 兼容性
 
-由于使用了 `getBoundingClientRect` API的 `width/height` 属性，所以并不兼容一些浏览器。详情请移步 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)。
+由于使用了 `getBoundingClientRect` API的 `width/height` 属性，所以并不兼容低版本浏览器。详情请移步 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)。
 
 ## License
 
