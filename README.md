@@ -38,7 +38,7 @@ new LazyLoad({
 
 ## 兼容性
 
-由于使用了 `getBoundingClientRect` API的 `width/height` 属性，所以并不兼容低版本浏览器。详情请移步 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)。
+由于使用了 `getBoundingClientRect` API的 `width/height` 等属性，所以并不兼容低版本浏览器。详情请移步 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)。
 
 ## License
 
