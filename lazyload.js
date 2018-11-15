@@ -32,6 +32,32 @@
     }
 
     /**
+     * 监听器
+     * @constructor
+     */
+    function Watcher() {
+        this.cbList = [];
+    }
+
+    /**
+     * 添加触发回调
+     * @param {Function} cb [回调函数]
+     */
+    Watcher.prototype.add = function (cb) {
+        this.cbList.push(cb);
+    };
+
+    /**
+     * 调用回调函数
+     */
+    Watcher.prototype.update = function () {
+        this.cbList.forEach(function (cb) {
+            cb();
+        });
+        this.cbList = [];
+    };
+
+    /**
      * 懒加载构造函数
      * @constructor
      * @param {Object} options [配置项]
@@ -40,6 +66,7 @@
         this.options = options;
         this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
         this.loadFailedImgList = [];
+        this.watcher = new Watcher();
         this.init();
     }
 
@@ -53,14 +80,6 @@
             delay = self.options.delay ? self.options.delay : 100;
 
         function callback() {
-            // 所有图片都加载完成后移除事件监听
-            if (self.imgList.length === 0) {
-                document.removeEventListener('scroll', callback);
-                window.removeEventListener('resize', callback);
-                completeCb();
-                return;
-            }
-
             timer && clearTimeout(timer);
             timer = setTimeout(function() {
                 var imgInVp = [];
@@ -87,6 +106,19 @@
             type: "resize",
             cb: callback
         }]);
+
+        /**
+         * 所有图片都加载完成后移除事件监听并手动清除闭包引用
+         */
+        function clearReference() {
+            document.removeEventListener('scroll', callback);
+            window.removeEventListener('resize', callback);
+            completeCb();
+            self = null;
+            return;
+        }
+
+        self.watcher.add(clearReference);
     };
 
     /**
@@ -148,6 +180,10 @@
         var idx = this.imgList.indexOf(img);
         if (idx > -1) {
             this.imgList.splice(idx, 1);
+        }
+
+        if (this.imgList.length === 0) {
+            this.watcher.update();
         }
     };
 
