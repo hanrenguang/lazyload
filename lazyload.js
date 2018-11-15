@@ -39,6 +39,7 @@
     function LazyLoad(options) {
         this.options = options;
         this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
+        this.loadFaildImgList = [];
         this.init();
     }
 
@@ -126,12 +127,16 @@
     LazyLoad.prototype.loadImg = function(inVpImgList) {
         var len = inVpImgList.length;
         var src = '';
+        var self = this;
 
         for (var i = 0; i < len; i++) {
             src = inVpImgList[i].getAttribute("data-src");
+            inVpImgList[i].onerror = function err(e) {
+                self.loadFaildImgList.push(this);
+            };
             inVpImgList[i].src = src;
             inVpImgList[i].removeAttribute("data-src");
-            this.removeItem(inVpImgList[i]);
+            self.removeItem(inVpImgList[i]);
         }
     };
 
