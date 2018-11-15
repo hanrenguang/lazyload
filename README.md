@@ -25,7 +25,7 @@ new LazyLoad();
 - **complete**：当所有懒加载图片都加载完成时执行函数，可选
 
 ## 示例
-例子一：
+### 例子一
 ```javascript
 new LazyLoad({
     spaceH: 100,
@@ -37,7 +37,7 @@ new LazyLoad({
 });
 ```
 
-例子二：  
+### 例子二
 通过访问 `LazyLoad` 实例属性 `loadFailedImgList` 数组来获取加载失败的图片DOM。
 ```javascript
 var lazyload = new LazyLoad({
