@@ -39,7 +39,7 @@
     function LazyLoad(options) {
         this.options = options;
         this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
-        this.loadFaildImgList = [];
+        this.loadFailedImgList = [];
         this.init();
     }
 
@@ -132,7 +132,7 @@
         for (var i = 0; i < len; i++) {
             src = inVpImgList[i].getAttribute("data-src");
             inVpImgList[i].onerror = function err(e) {
-                self.loadFaildImgList.push(this);
+                self.loadFailedImgList.push(this);
             };
             inVpImgList[i].src = src;
             inVpImgList[i].removeAttribute("data-src");

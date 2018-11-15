@@ -24,7 +24,8 @@ new LazyLoad();
 - **delay**：图片停留在视口 `delay(ms)` 时间后会被加载，默认为 `100`
 - **complete**：当所有懒加载图片都加载完成时执行函数，可选
 
-示例：
+## 示例
+例子一：
 ```javascript
 new LazyLoad({
     spaceH: 100,
@@ -32,6 +33,20 @@ new LazyLoad({
     delay: 200,
     complete: function () {
         alert("All imgs were loaded!");
+    }
+});
+```
+
+例子二：  
+通过访问 `LazyLoad` 实例属性 `loadFailedImgList` 数组来获取加载失败的图片DOM。
+```javascript
+var lazyload = new LazyLoad({
+    spaceH: 0,
+    spaceW: 0,
+    delay: 200,
+    complete: function () {
+        alert("All imgs were loaded!");
+        console.log('Load failed imgList:', lazyload.loadFailedImgList);
     }
 });
 ```
