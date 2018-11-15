@@ -50,7 +50,7 @@
     /**
      * 调用回调函数
      */
-    Watcher.prototype.update = function () {
+    Watcher.prototype.call = function () {
         this.cbList.forEach(function (cb) {
             cb();
         });
@@ -183,7 +183,7 @@
         }
 
         if (this.imgList.length === 0) {
-            this.watcher.update();
+            this.watcher.call();
         }
     };
 
