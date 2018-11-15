@@ -50,7 +50,7 @@
     /**
      * 调用回调函数
      */
-    Watcher.prototype.call = function () {
+    Watcher.prototype.excute = function () {
         this.cbList.forEach(function (cb) {
             cb();
         });
@@ -64,7 +64,7 @@
      */
     function LazyLoad(options) {
         this.options = options;
-        this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
+        this.imgList = [].slice.excute(document.querySelectorAll(".lazyload-img"));
         this.loadFailedImgList = [];
         this.watcher = new Watcher();
         this.init();
@@ -183,7 +183,7 @@
         }
 
         if (this.imgList.length === 0) {
-            this.watcher.call();
+            this.watcher.excute();
         }
     };
 
