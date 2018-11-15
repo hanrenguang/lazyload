@@ -1,4 +1,8 @@
 # 图片懒加载
+* [使用](https://github.com/hanrenguang/lazyload#使用)
+* [配置项](https://github.com/hanrenguang/lazyload#配置项)
+* [示例](https://github.com/hanrenguang/lazyload#示例)
+* [兼容性](https://github.com/hanrenguang/lazyload#兼容性)
 
 ## 使用
 
