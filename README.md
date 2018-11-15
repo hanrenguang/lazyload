@@ -36,7 +36,7 @@ new LazyLoad({
     spaceW: 100,
     delay: 200,
     complete: function () {
-        alert("All imgs were loaded!");
+        console.log("All imgs were loaded!");
     }
 });
 ```
@@ -49,7 +49,7 @@ var lazyload = new LazyLoad({
     spaceW: 0,
     delay: 200,
     complete: function () {
-        alert("All imgs were loaded!");
+        console.log("All imgs were loaded!");
         console.log('Load failed imgList:', lazyload.loadFailedImgList);
     }
 });
