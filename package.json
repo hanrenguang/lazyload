@@ -1,0 +1,27 @@
+{
+  "name": "lazyload",
+  "version": "1.0.0",
+  "description": "lazyload.js lib",
+  "main": "lazyload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanrenguang/lazyload.git"
+  },
+  "keywords": [
+    "lazyload"
+  ],
+  "author": "Renguang Han",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hanrenguang/lazyload/issues"
+  },
+  "homepage": "https://github.com/hanrenguang/lazyload#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1"
+  }
+}

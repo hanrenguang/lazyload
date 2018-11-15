@@ -64,7 +64,7 @@
      */
     function LazyLoad(options) {
         this.options = options;
-        this.imgList = [].slice.excute(document.querySelectorAll(".lazyload-img"));
+        this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
         this.loadFailedImgList = [];
         this.watcher = new Watcher();
         this.init();
