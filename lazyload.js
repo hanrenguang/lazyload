@@ -173,7 +173,7 @@
             };
             inVpImgList[i].src = src;
             inVpImgList[i].removeAttribute("data-src");
-            self.removeItem(inVpImgList[i]);
+            self.removeImgLoaded(inVpImgList[i]);
         }
     };
 
@@ -181,7 +181,7 @@
      * 从imgList中移除加载过的图片
      * @param  {HTMLElement} img [需要移除的图片]
      */
-    LazyLoad.prototype.removeItem = function(img) {
+    LazyLoad.prototype.removeImgLoaded = function(img) {
         var idx = this.imgList.indexOf(img);
         if (idx > -1) {
             this.imgList.splice(idx, 1);
