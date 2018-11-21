@@ -41,25 +41,28 @@
      * @constructor
      */
     function Watcher() {
-        this.cbList = [];
+        this.cbList = {};
     }
 
     /**
      * 添加触发回调
      * @param {Function} cb [回调函数]
      */
-    Watcher.prototype.add = function (cb) {
-        this.cbList.push(cb);
+    Watcher.prototype.listen = function (event, cb) {
+        if (!this.cbList[event]) this.cbList[event] = [];
+
+        this.cbList[event].push(cb);
     };
 
     /**
      * 调用回调函数
      */
-    Watcher.prototype.excute = function () {
-        this.cbList.forEach(function (cb) {
-            cb();
-        });
-        this.cbList = [];
+    Watcher.prototype.trigger = function (event) {
+        for (var i = 0; i < this.cbList[event].length; i++) {
+            this.cbList[event][i]();
+        }
+        
+        this.cbList[event] = null;
     };
 
     /**
@@ -123,7 +126,7 @@
             return;
         }
 
-        self.watcher.add(clearReference);
+        self.watcher.listen('clear-reference', clearReference);
     };
 
     /**
@@ -188,7 +191,7 @@
         }
 
         if (this.imgList.length === 0) {
-            this.watcher.excute();
+            this.watcher.trigger('clear-reference');
         }
     };
 
