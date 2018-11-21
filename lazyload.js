@@ -46,6 +46,7 @@
 
     /**
      * 添加触发回调
+     * @param {String} event [订阅的事件名]
      * @param {Function} cb [回调函数]
      */
     Watcher.prototype.listen = function (event, cb) {
@@ -56,6 +57,7 @@
 
     /**
      * 调用回调函数
+     * @param {String} event [发布的事件名]
      */
     Watcher.prototype.trigger = function (event) {
         for (var i = 0; i < this.cbList[event].length; i++) {
