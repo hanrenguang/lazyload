@@ -84,8 +84,22 @@
      * 初始化，添加 "scroll" 和 "resize" 事件监听
      */
     LazyLoad.prototype.init = function() {
-        var self = this,
-            timer = null,
+        var self = this;
+        // 兼容性检查
+        if (typeof new Image().getBoundingClientRect != "function") {
+            console.log("您的浏览器版本过低！");
+            for (var i = 0; i < self.imgList.length; i++) {
+                self.imgList[i].onerror = function err(e) {
+                    self.loadFailedImgList.push(self.imgList[i]);
+                };
+                self.imgList[i].src = self.imgList[i].getAttribute("data-src");
+                self.imgList[i].removeAttribute("data-src");
+                self.imgList = [];
+            }
+            return;
+        }
+
+        var timer = null,
             completeCb = typeof self.options.complete == "function" ? self.options.complete : function () {},
             delay = self.options.delay ? self.options.delay : 100;
 
@@ -143,22 +157,17 @@
             spaceW = this.options.spaceW || 0,
             imgPosOb, imgH, imgL, imgT, imgW;
 
-        if (typeof img.getBoundingClientRect == "function") {
-            imgPosOb = img.getBoundingClientRect();
-            imgT = imgPosOb.top;
-            imgL = imgPosOb.left;
-            imgH = imgPosOb.height;
-            imgW = imgPosOb.width;
+        imgPosOb = img.getBoundingClientRect();
+        imgT = imgPosOb.top;
+        imgL = imgPosOb.left;
+        imgH = imgPosOb.height;
+        imgW = imgPosOb.width;
 
-            if ((imgT > -imgH-spaceH && imgT < clientH+spaceH) && 
-                (imgL > -imgW-spaceW && imgL < clientW+spaceW)) {
-                return true;
-            } else {
-                return false;
-            }
+        if ((imgT > -imgH-spaceH && imgT < clientH+spaceH) && 
+            (imgL > -imgW-spaceW && imgL < clientW+spaceW)) {
+            return true;
         } else {
-            alert("您的浏览器版本过低！");
-            return;
+            return false;
         }
     };
 
