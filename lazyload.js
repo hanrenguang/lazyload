@@ -46,7 +46,7 @@
 
     /**
      * 添加触发回调
-     * @param {String} event [订阅的事件名]
+     * @param {String} event [监听的事件名]
      * @param {Function} cb [回调函数]
      */
     Watcher.prototype.listen = function (event, cb) {
@@ -56,8 +56,8 @@
     };
 
     /**
-     * 调用回调函数
-     * @param {String} event [发布的事件名]
+     * 触发事件，调用回调函数
+     * @param {String} event [触发的事件名]
      */
     Watcher.prototype.trigger = function (event) {
         for (var i = 0; i < this.cbList[event].length; i++) {
@@ -73,7 +73,7 @@
      * @param {Object} options [配置项]
      */
     function LazyLoad(options) {
-        this.options = options;
+        this.options = options || {};
         this.imgList = [].slice.call(document.querySelectorAll(".lazyload-img"));
         this.loadFailedImgList = [];
         this.watcher = new Watcher();

@@ -17,7 +17,7 @@
 加载 `lazyload.js` 后，在你的代码中加入如下一行代码即可工作：
 
 ```javascript
-new LazyLoad();
+new LazyLoad({});
 ```
 
 ## 配置项
